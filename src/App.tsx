@@ -6,10 +6,10 @@ class App extends Component{
 
 
   render(){
-  return <div>
-      <form action="">
+  return <div className='form'>
+      
         <ul className='tab-group'>
-          <li className='tab active'><a href="#signup">Sign Up</a></li>
+          <li className='tab-active'><a href="#signup">Sign Up</a></li>
           <li className='tab'><a href="#login">Log In</a></li>
         </ul>
 
@@ -71,7 +71,6 @@ class App extends Component{
           
           </div>
         </div>
-      </form>
     </div>
   
 }
