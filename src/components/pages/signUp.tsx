@@ -2,9 +2,7 @@ import { Component, ReactNode } from "react";
 
 export default class signUp extends Component{
     render(){
-        return <div>
-
-        <div className='tab-content'>
+        return <div className='tab-content'>
             <div id='signup'><br />
                 <h1>Sign Up</h1>
 
@@ -42,8 +40,5 @@ export default class signUp extends Component{
             
             </div>
         </div>
-    </div>
-
-        
     }
 }
