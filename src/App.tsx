@@ -1,79 +1,53 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
+import SignUp from './components/pages/signUp'
+import 'bootstrap/dist/css/bootstrap.css';
+import { Navbar } from 'react-bootstrap';
+import LogIn from './LogIn';
+import QuizMaker from './components/pages/QuizMaker';
 
-class App extends Component{
+class App extends React.Component {
 
 
-  render(){
-  return <div className='form'>
-      
-        <ul className='tab-group'>
-          <li className='tab-active'><a href="#signup">Sign Up</a></li>
-          <li className='tab'><a href="#login">Log In</a></li>
-        </ul>
+  render() {
+    return <div className='html'>
 
-{/*Sign Up*/}
-        <div className='tab-content'>
-          <div id='signup'>
-            <h1>Sign Up</h1>
+      <div className='container-fluid' id='menu'>
+        <div className='row'>
 
-            <form action="/" method='post'>
-              <div className='top-row'>
-                <div className='field-wrap'>
-                  <label htmlFor="">Firstname: <span className='req'>*</span></label>
-                  <input type="text" required autoComplete='off' />
-                </div>
+          <div className='col-md-3'>
+            <Link to='/quizRider' className='quizrider'>QuizRider</Link>
+          </div>
 
-                <div className='field-wrap'>
-                  <label htmlFor="">Lastname: <span className='req'>*</span></label>
-                  <input type="text" required autoComplete='off' />
-                </div>
+          <div className='col-lg-3'>
+            <Link to='/signUp' className='sign'>Sign Up</Link>
+          </div>
 
-                <div className='field-wrap'>
-                  <label htmlFor="">Email Address:<span className='req'>*</span></label>
-                  <input type="email" required autoComplete='off' />
-                </div>
+          <div className='col-lg-3'>
+            <Link to='/logIn' className='login'>Log In</Link>
+          </div>
 
-                <div className='field-wrap'>
-                  <label htmlFor="">Password: <span className='req'>*</span></label>
-                  <input type="password"required autoComplete="off"/>
-                </div>
-
-                <div className='field-wrap'>
-                  <label htmlFor="">Password again: <span className='req'>*</span></label>
-                  <input type="password"required autoComplete="off"/>
-                </div>
-
-                <button type='submit' className='button button-block'>Sign Up</button>
-
-{/*Log In*/}
-
-            <div id='login'>
-                <h1>Log In</h1>
-                <form action="/" method='post'></form>
-
-                <div className='field-wrap'>
-                  <label htmlFor="">Email Address: <span className='req'>*</span></label>
-                  <input type="email"required autoComplete="off"/>
-                </div>
-
-                <div className='field-wrap'>
-                <label htmlFor="">Password: <span className='req'>*</span></label>
-                  <input type="password"required autoComplete="off"/>
-                </div>
-            </div>
-
-            <button type='submit' className='button button-block'>Log In</button>
-            
-             </div>
-            </form>
-          
+          <div className='col-lg-3'>
+          <Link to='/quizMaker' className='make'>Quiz Maker</Link>
           </div>
         </div>
+      </div>
+
+
+      <main>
+        <Routes>
+          <Route path='/signUp' element={<SignUp />}></Route>
+          <Route path='/logIn' element={<LogIn />}></Route>
+          <Route path='/quizMaker' element={<QuizMaker />}></Route>
+        </Routes>
+      </main>
+
     </div>
-  
-}
+
+
+  }
 }
 
 export default App;
