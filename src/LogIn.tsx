@@ -21,7 +21,7 @@ export default class LogIn extends Component{
                             </div><br />
             
 
-                        <button type='submit' className='button button-block'>Log In</button><br />
+                        <button type='submit' className='button button-block' id="gomb">Log In</button><br />
             
                         
                 </div>

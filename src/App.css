@@ -41,7 +41,7 @@
 
 html {
 	overflow-y: scroll; 
-  background-color: #282c34;
+  background-color: #677c8a;
 
 }
 body {
@@ -49,7 +49,7 @@ body {
   font-family: 'Titillium Web', sans-serif;
 }
 .tab-content{
-  background-color: lightslategray;
+  background: #677c8a;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -108,19 +108,19 @@ body {
   button{
   border:0;
   outline:none;
-  border-radius:0;
+  border-radius:10px;
   padding:15px 0;
   font-size:2rem;
   font-weight: bold;
   text-transform:uppercase;
   letter-spacing:.1em;
-  background:#1ab188;
+  background: Turquoise;
   color:#13232f;
   transition:all.5s ease;
   -webkit-appearance: none;
   }
   button:hover, button:focus{
-    background: darken(#1ab188,5%);
+    background: darken(Turquoise,5%);
   }
 
   .button-block{
@@ -154,10 +154,82 @@ body {
     color: #13232f;
   }
   #menu{
-    background-color:#1ab188;
+    background: Turquoise;
     justify-content: center;
     text-align: center;
     display: block;
     padding: 15px;
+    border-radius: 10px;
     
   }
+
+  #kviz{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: #677c8a;
+    border-radius: 10px;
+  }
+
+  .valasz{
+    cursor: pointer;
+  }
+
+  .valasz_resz{
+    display: block;
+    padding: 1%;
+    border-radius: 10px;
+    background: Turquoise;
+    transition: Turquoise 0.5s ease;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .valasz_resz:hover{
+    background-color: darkturquoise;
+    
+  }
+ 
+  #lehetoseg, #fokerdes,#valaszlehetoseg {
+    text-align: center;
+    display: block;
+    width: auto;
+    color: #13232f;
+    font-weight: bold;
+    
+  }
+
+  #lehetoseg{
+    padding-top: 45px;
+  }
+
+  #fokerdes{
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  p{
+    font-size: 25px;
+  }
+ 
+ #signup{
+  padding: 40px;
+ }
+  
+ #gomb{
+  border-radius: 10px;
+ }
+
+ .tovabb_gomb{
+  padding: 10px;
+ }
+
+ #gomb_tovabb{
+  text-align: center;
+  float: right;
+  max-width: 200px;
+  border-radius: 10px;
+  font-size: 20px;
+ }
