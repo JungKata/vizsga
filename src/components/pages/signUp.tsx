@@ -3,8 +3,8 @@ import { Component, ReactNode } from "react";
 export default class signUp extends Component{
     render(){
         return <div className='tab-content'>
-            <div id='signup'><br />
-                <h1>Sign Up</h1>
+            <div id='signup'>
+                <h1 id="sign_felirat">Sign Up</h1>
 
             
               <div className='top-row'>

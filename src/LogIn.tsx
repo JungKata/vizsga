@@ -5,8 +5,8 @@ export default class LogIn extends Component{
         return <div>
 
             <div className="tab-content">
-                <div id='login'> <br />
-                    <h1>Log In</h1>
+                <div id='login'>
+                    <h1 id="login_felirat">Log In</h1>
                         
 
                             <div className='form-group'>
