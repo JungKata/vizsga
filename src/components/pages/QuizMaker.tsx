@@ -4,6 +4,8 @@ import { Component } from "react";
 export default class QuizMaker extends Component{
     render(){
         return <div id="kviz">
+
+                <div id="kviz-kinezet">
              <h1 id="lehetoseg">What Type Of Thing Are You?</h1>
              
              <div className="kerdes_Egy">
@@ -49,7 +51,7 @@ export default class QuizMaker extends Component{
             <div className="tovabb_gomb">
                 <button type="submit" className="button button-block" id="gomb_tovabb">Tovább</button>
             </div>
-
+            </div>
              
         </div>
 }
