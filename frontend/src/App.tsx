@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import SignUp from './components/pages/signUp'
@@ -8,7 +7,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import LogIn from './LogIn';
 import QuizMaker from './components/pages/QuizMaker';
 
-class App extends React.Component {
+
+class App extends Component {
 
 
   render() {
@@ -38,7 +38,9 @@ class App extends React.Component {
 
       <main>
         <Routes>
-          <Route path='/signUp' element={<SignUp />}></Route>
+          <Route path='/signUp'>
+          <SignUp alert={{ type: 'success', message: '' }} />
+          </Route>
           <Route path='/logIn' element={<LogIn />}></Route>
           <Route path='/quizMaker' element={<QuizMaker />}></Route>
         </Routes>

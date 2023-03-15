@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { User } from "./signUp.entity";
+import { User } from "./entity/signUp.entity";
 
 
 @Injectable()
@@ -15,7 +15,7 @@ export class UserService{
 
     async getUser(_id: number): Promise<User[]> {
         return await this.usersRepository.find({
-            select: ["fistname", "lastname", "emailAddres", "password", "passwordAgain" ],
+            select: ["fistname", "lastname", "emailAddres", "password" ],
             where: [{ "id": _id }]
         });
     }
