@@ -9,6 +9,8 @@ export class UserService{
     [x: string]: any;
     constructor(@InjectRepository(User) private usersRepository: Repository<User>) { }
 
+   
+
     async getUsers(user: User): Promise<User[]> {
         return await this.usersRepository.find();
     }
@@ -19,6 +21,11 @@ export class UserService{
             where: [{ "id": _id }]
         });
     }
+
+    async findAll() {
+        const repository = this.usersRepository
+        return await repository;
+      } 
 
     async updateUser(user: User) {
         this.usersRepository.save(user)

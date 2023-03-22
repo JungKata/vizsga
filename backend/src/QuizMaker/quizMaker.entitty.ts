@@ -24,4 +24,7 @@ export class quizMaker{
 
     @Column()
     valasz_4: string;
+
+    @Column()
+    helyes_valasz: string;
 }
