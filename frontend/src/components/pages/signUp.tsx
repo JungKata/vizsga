@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouterProps } from "react-router-dom";
+import LogIn from "../../LogIn";
 
 const email_regex = RegExp(/^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A -Z0–9]{2,4}\s?$/i);
 
@@ -52,9 +53,13 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
       password: password,
     }
   
-    //let response = await fetch('https://localhost:3000/signUp', {
-
-    //})
+    let response = await fetch('https://localhost:3000/authorization/signUp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(profileData),
+    })
   }
 
     

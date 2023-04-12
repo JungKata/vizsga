@@ -1,7 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "src/signUp/entity/signUp.entity";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class LogIn{
+export class LogInUser{
 
     @PrimaryGeneratedColumn()
     id:string;
@@ -11,4 +12,8 @@ export class LogIn{
 
     @Column()
     password: string;
+
+    @OneToOne(() => User, (signUp) => signUp.id)
+    @JoinColumn()
+    signUp:User;
 }

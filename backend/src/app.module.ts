@@ -3,9 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { sign } from 'crypto';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { LogIn} from './LogIn/entity/logIn.entity';
+import {LogInUser} from './LogIn/entity/logIn.entity';
+import { LogInProfile } from './LogIn/LogIn.controller';
+import { ProfileService } from './LogIn/LogIn.service';
 import { quizMaker } from './QuizMaker/quizMaker.entitty';
 import { User } from './signUp/entity/signUp.entity';
+import { UserModule } from './signUp/signUn.module';
+import { UserController } from './signUp/signUp.controller';
+import { UserService } from './signUp/signUp.service';
 
 
 
@@ -19,12 +24,13 @@ import { User } from './signUp/entity/signUp.entity';
       password: process.env.DB_PASSWORD || '',
       database: process.env.DB_DATABASE || 'quizer_racer',
       entities: [
-       User,LogIn,quizMaker
+       User,LogInUser,quizMaker
       ],
       synchronize: true,
     }),
+    UserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController,UserController, LogInProfile],
+  providers: [AppService, UserService, ProfileService],
 })
 export class AppModule {}

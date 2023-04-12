@@ -7,7 +7,7 @@ import { User } from "./entity/signUp.entity";
 @Injectable()
 export class UserService{
     [x: string]: any;
-    constructor(@InjectRepository(User) private usersRepository: Repository<User>) { }
+    constructor(@InjectRepository(User) private  usersRepository: Repository<User>) { }
 
    
 

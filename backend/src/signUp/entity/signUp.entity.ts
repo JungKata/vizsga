@@ -1,4 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { profile } from "console";
+import { LogIn, LogInUser } from "src/LogIn/entity/logIn.entity";
+import { LogInProfile } from "src/LogIn/LogIn.controller";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User{
@@ -18,5 +21,7 @@ export class User{
     @Column()
         password: string;
 
+    @OneToOne(() => LogInUser, (LogIn) => LogIn.id)
+    LogIn: LogIn
 
 }
