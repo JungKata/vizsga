@@ -2,6 +2,8 @@ import { IsString } from "class-validator";
 import { IsEmail } from "class-validator/types/decorator/decorators";
 
 export default class profileDto{
+    
+
     @IsEmail()
     emailAddres: string;
 
@@ -13,6 +15,7 @@ export default class profileDto{
 
     @IsString()
     lastname: string;
+    id: string;
 
     
 }

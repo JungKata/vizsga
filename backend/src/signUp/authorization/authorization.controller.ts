@@ -70,16 +70,18 @@ private authorizationService: AuthorizationService
     }
 
     try {
-        const userId = userData.id ? userData.id : '';
+        const userId = userData?.id || '';
         const saveUser = Object.assign(new User(), userData);
-        saveUser.id = userId;
+        saveUser.id == userId;
         const passwordHash = await bcrypt.hash(saveUser.password, 10);
         saveUser.password = passwordHash;
         await usersRepository.save(saveUser);
         console.log(saveUser);
       } catch (error) {
-        console.error(error);
+        console.error('Error saving user to database:', error.message);
       }
+      
+      
       
       
       
