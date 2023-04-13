@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouterProps } from "react-router-dom";
-import LogIn from "../../LogIn";
+import LogIn from "../../LogIn";  
 
 const email_regex = RegExp(/^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A -Z0–9]{2,4}\s?$/i);
 
