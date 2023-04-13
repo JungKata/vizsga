@@ -1,6 +1,6 @@
-import { CreateDto } from "./SignUp_create.dto";
+import { CreateUserDto } from "./SignUp_create.dto";
 
 
-export default class UpdateDto extends CreateDto {
+export default class UpdateDto extends CreateUserDto {
     
 }

@@ -4,8 +4,8 @@ import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "ty
 @Entity()
 export class LogInUser{
 
-    @PrimaryGeneratedColumn()
-    id:string;
+     @PrimaryGeneratedColumn()
+     id:string;
 
     @Column()
     emailAddress: string;

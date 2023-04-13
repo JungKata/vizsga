@@ -1,11 +1,20 @@
+import { IsEmail, IsNumber, IsString } from "class-validator";
 import { FindOperator } from "typeorm";
 
 
-export class CreateDto{
-    [x: string]: any;
-    fistname: any;
-    lastname: string | FindOperator<string>;
-    emailAddres: string | FindOperator<string>;
-    password: string | FindOperator<string>;
+export class CreateUserDto{
 
+  
+    @IsString()
+    firstname: string;
+
+    @IsString()
+    lastname: string
+
+    @IsEmail()
+    emailAddres: string;
+    id: number;
+
+    @IsString()
+    password: string;
 }

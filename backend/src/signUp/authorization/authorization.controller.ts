@@ -4,6 +4,7 @@ import { AuthorizationService } from "./authorization.service";
 import profileDto from "./Dto/profileDto.dto";
 import { User } from "../entity/signUp.entity";
 import * as bcrypt from 'bcrypt';
+import { CreateUserDto } from "../data_Dto/SignUp_create.dto";
 
 
 @Controller('authorization')
@@ -26,7 +27,7 @@ private authorizationService: AuthorizationService
         }
         
         const passMatch = await bcrypt.compare(
-            profileData.emailAddres,
+            profileData.password,
             user.password
         );
 
@@ -34,7 +35,7 @@ private authorizationService: AuthorizationService
             throw new UnauthorizedException('Hibás email vagy jelszó')
         }
 
-        const tokenForUser = await this.authorizationService.generateToken(user)
+        const tokenForUser = await this.authorizationService.generateUserToken(user)
         return{tokenForUser}
     }
     
@@ -42,7 +43,7 @@ private authorizationService: AuthorizationService
     
     
     @Post('user')
-        async postRegisztracio(@Body() userData: profileDto){
+        async postRegisztracio(@Body() userData: CreateUserDto){
         const usersRepository = this.dataSource.getRepository(User)
         
 
@@ -63,10 +64,10 @@ private authorizationService: AuthorizationService
             existingmessage = 'Ezzel az email címmel már regisztráltak'
         }
         if(existingUserFromDatebase.fistname === userData.firstname){
-            existingmessage = 'Ezzel a névvel már regisztráltak'
+            existingmessage = 'Ezzel a fistnammel már regisztráltak'
         }
         if(existingUserFromDatebase.lastname === userData.lastname){
-            existingmessage = 'Ezzel a névvel már regisztráltak'
+            existingmessage = 'Ezzel a lastnammel már regisztráltak'
         }
 
         throw new BadRequestException(existingmessage);

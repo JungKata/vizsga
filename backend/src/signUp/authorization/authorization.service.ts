@@ -1,6 +1,6 @@
 import { Body, Delete, Get, Injectable, Post } from "@nestjs/common";
 import { DataSource, IsNull } from "typeorm";
-import { CreateDto } from "../data_Dto/SignUp_create.dto";
+import { CreateUserDto } from "../data_Dto/SignUp_create.dto";
 import { User } from "../entity/signUp.entity";
 import Token from "./token.entity";
 import crypto from 'crypto';
@@ -14,12 +14,12 @@ constructor(private dataSource: DataSource){
 
 //Regisztráció
 
-async postUser(@Body() usersDto: CreateDto) {
+async postUser(@Body() usersDto: CreateUserDto) {
     const usersRepository = this.dataSource.getRepository(User);
   
     const alreadyExistingUser = await usersRepository.findOne({
       where: [
-        { fistname: usersDto.fistname },
+        { fistname: usersDto.firstname },
         { lastname: usersDto.lastname },
         { emailAddres: usersDto.emailAddres },
         { password: usersDto.password },
@@ -27,7 +27,7 @@ async postUser(@Body() usersDto: CreateDto) {
     });
   
     if (alreadyExistingUser) {
-      if (alreadyExistingUser.fistname === usersDto.fistname && alreadyExistingUser.lastname === usersDto.lastname) {
+      if (alreadyExistingUser.fistname === usersDto.firstname && alreadyExistingUser.lastname === usersDto.lastname) {
         return 'Ezzel a névvel már létezik regisztráció';
       }
       if (alreadyExistingUser.emailAddres === usersDto.emailAddres) {
@@ -47,21 +47,23 @@ async postUser(@Body() usersDto: CreateDto) {
 //token
 
     //token generálás
-        async  generateToken(user: User): Promise<string> {
-        const randomToken = crypto.randomBytes(32);
+    async generateUserToken(user: User, tokenLength: number = 32): Promise<Token> {
+      try {
+        const randomToken = crypto.randomBytes(tokenLength);
         const randomTokenString = randomToken.toString('hex');
         
-        try {
-          const token = new Token();
-          token.user = user;
-          token.token = randomTokenString;
-          await this.dataSource.getRepository(Token).save(token);
-          return randomTokenString;
-        } catch (err) {
-          console.error('Error generating token:', err);
-          throw new Error('Failed to generate token');
-        }
+        const token = new Token();
+        token.user = user;
+        token.token = randomTokenString;
+        await this.dataSource.getRepository(Token).save(token);
+        
+        return token;
+      } catch (error) {
+        console.error('Error generating token:', error);
+        throw new Error('Failed to generate token');
       }
+    }
+    
       
 
     //token user keresés
