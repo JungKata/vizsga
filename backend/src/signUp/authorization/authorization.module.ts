@@ -4,12 +4,14 @@ import { AppController } from "src/app.controller";
 import { AuthorizationService } from "./authorization.service";
 import { AppService } from "src/app.service";
 import TokenStrategy from "./token.strategy";
+import { UserModule } from "../signUn.module";
+import { UserService } from "../signUp.service";
 
 
 
 
 @Module({
-    controllers: [AuthorizationController, AppController],
-    providers: [AuthorizationService, AppService, TokenStrategy]
+    controllers: [AuthorizationController],
+    providers: [AuthorizationService, TokenStrategy]
 })
 export class AuthModule{}

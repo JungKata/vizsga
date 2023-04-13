@@ -38,9 +38,9 @@ class App extends Component {
 
       <main>
         <Routes>
-          <Route path='/signUp'>
-          <SignUp alert={{ type: 'success', message: '' }} />
-          </Route>
+          <Route path='/signUp' element={<SignUp alert={{ type: 'success', message: '' }} />}></Route>
+          {/* <SignUp alert={{ type: 'success', message: '' }} /> */}
+        
           <Route path='/logIn' element={<LogIn />}></Route>
           <Route path='/quizMaker' element={<QuizMaker />}></Route>
         </Routes>

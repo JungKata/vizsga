@@ -6,7 +6,7 @@ import { User } from "../entity/signUp.entity";
 import * as bcrypt from 'bcrypt';
 
 
-Controller('authorization')
+@Controller('authorization')
 export class AuthorizationController{
 constructor(
 private dataSource: DataSource,
@@ -38,7 +38,10 @@ private authorizationService: AuthorizationService
         return{tokenForUser}
     }
     
-        @Post('user')
+    
+    
+    
+    @Post('user')
         async postRegisztracio(@Body() userData: profileDto){
         const usersRepository = this.dataSource.getRepository(User)
         

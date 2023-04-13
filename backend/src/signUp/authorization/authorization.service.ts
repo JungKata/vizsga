@@ -1,4 +1,4 @@
-import { Body, Injectable, Post } from "@nestjs/common";
+import { Body, Delete, Get, Injectable, Post } from "@nestjs/common";
 import { DataSource, IsNull } from "typeorm";
 import { CreateDto } from "../data_Dto/SignUp_create.dto";
 import { User } from "../entity/signUp.entity";
@@ -13,34 +13,36 @@ constructor(private dataSource: DataSource){
 
 
 //Regisztráció
-@Post('signUp')
-async postUser(@Body() usersDto: CreateDto){
+
+async postUser(@Body() usersDto: CreateDto) {
     const usersRepository = this.dataSource.getRepository(User);
-
-    const alrexistingUser= await usersRepository.findOne({
-        where:[
-            {fistname: usersDto.fistname},
-            {lastname: usersDto.lastname},
-            {emailAddres: usersDto.emailAddres},
-            {password: usersDto.password},
-        ],
+  
+    const alreadyExistingUser = await usersRepository.findOne({
+      where: [
+        { fistname: usersDto.fistname },
+        { lastname: usersDto.lastname },
+        { emailAddres: usersDto.emailAddres },
+        { password: usersDto.password },
+      ],
     });
-
-    if(alrexistingUser.fistname == usersDto.fistname && alrexistingUser.lastname == usersDto.lastname){
-        alert('Ezzel a névvel már létezik regisztáció')
+  
+    if (alreadyExistingUser) {
+      if (alreadyExistingUser.fistname === usersDto.fistname && alreadyExistingUser.lastname === usersDto.lastname) {
+        return 'Ezzel a névvel már létezik regisztráció';
+      }
+      if (alreadyExistingUser.emailAddres === usersDto.emailAddres) {
+        return 'Ezzel az email címmel már létezik regisztráció';
+      }
     }
-    if(alrexistingUser.emailAddres == usersDto.emailAddres){
-        alert('Ezzel az email címmel már létezik regisztráció')
-    }
-    else{
-        alert('Sikeres regisztráció')
-    }
-
+  
     usersDto.id = undefined;
-    const newUser = Object.assign(new User(), usersDto)
+    const newUser = Object.assign(new User(), usersDto);
     console.log(newUser);
     await usersRepository.save(newUser);
-}
+  
+    return 'Sikeres regisztráció';
+  }
+  
 
 //token
 
@@ -78,7 +80,7 @@ async postUser(@Body() usersDto: CreateDto){
     }
 
     
-    //token törlés
+  //token törlés
     async deleteUserToken(token: string){
         const tokenRepository = this.dataSource.getRepository(Token);
         await tokenRepository.delete({token});

@@ -58,7 +58,7 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(profileData),
+      body: JSON.stringify(SignUpData),
     })
   }
 
