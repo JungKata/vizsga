@@ -1,4 +1,4 @@
-import { profile } from "console";
+
 import { LogInUser } from "src/LogIn/entity/logIn.entity";
 import { LogInProfile } from "src/LogIn/LogIn.controller";
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";

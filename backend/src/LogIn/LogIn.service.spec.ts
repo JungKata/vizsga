@@ -11,7 +11,7 @@ describe('ProfilesService', () => {
             providers: [ProfileService],
         }).compile();
 
-        services = module.get<ProfileService>(ProfileService);
+        //services = module.get<ProfileService>(ProfileService);
     });
 
     it('should be defined', () =>{

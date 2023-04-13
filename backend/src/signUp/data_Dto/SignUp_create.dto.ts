@@ -1,5 +1,5 @@
 import { IsEmail, IsNumber, IsString } from "class-validator";
-import { FindOperator } from "typeorm";
+
 
 
 export class CreateUserDto{
