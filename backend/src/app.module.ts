@@ -7,7 +7,7 @@ import { LogInProfile } from './LogIn/LogIn.controller';
 import { ProfileService } from './LogIn/LogIn.service';
 import { quizMaker } from './QuizMaker/quizMaker.entitty';
 import { User } from './signUp/entity/signUp.entity';
-import { UserModule } from './signUp/signUn.module';
+import { UserModule } from './signUp/signUp.module';
 import { UserController } from './signUp/signUp.controller';
 import { UserService } from './signUp/signUp.service';
 import { AuthorizationController } from './signUp/authorization/authorization.controller';

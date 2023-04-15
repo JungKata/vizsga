@@ -35,8 +35,8 @@ private authorizationService: AuthorizationService
             throw new UnauthorizedException('Hibás email vagy jelszó')
         }
 
-        const tokenForUser = await this.authorizationService.generateUserToken(user)
-        return{tokenForUser}
+        //const tokenForUser = await this.authorizationService.generateUserToken(user)
+        //return{tokenForUser}
     }
     
     

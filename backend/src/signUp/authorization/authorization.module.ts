@@ -4,7 +4,7 @@ import { AppController } from "src/app.controller";
 import { AuthorizationService } from "./authorization.service";
 import { AppService } from "src/app.service";
 import TokenStrategy from "./token.strategy";
-import { UserModule } from "../signUn.module";
+import { UserModule } from "../signUp.module";
 import { UserService } from "../signUp.service";
 
 
