@@ -12,6 +12,7 @@ import { UserController } from './signUp/signUp.controller';
 import { UserService } from './signUp/signUp.service';
 import { AuthorizationController } from './signUp/authorization/authorization.controller';
 import { AuthModule } from './signUp/authorization/authorization.module';
+import Token from './signUp/authorization/token.entity';
 
 
 
@@ -25,7 +26,7 @@ import { AuthModule } from './signUp/authorization/authorization.module';
       password: process.env.DB_PASSWORD || '',
       database: process.env.DB_DATABASE || 'quizer_racer',
       entities: [
-       User,LogInUser,quizMaker,
+       User,LogInUser,quizMaker,Token
       ],
       synchronize: true,
     }),

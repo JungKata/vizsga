@@ -35,8 +35,8 @@ private authorizationService: AuthorizationService
             throw new UnauthorizedException('Hibás email vagy jelszó')
         }
 
-        //const tokenForUser = await this.authorizationService.generateUserToken(user)
-        //return{tokenForUser}
+        var tokenForUser = await this.authorizationService.generateUserToken(user)
+        return{tokenForUser}
     }
     
     
@@ -49,7 +49,7 @@ private authorizationService: AuthorizationService
 
     //ellenőrzés
     const existingUserFromDatebase = await usersRepository.findOne({
-        where:[ {fistname: userData.firstname},
+        where:[ {firstname: userData.firstname},
                 {lastname: userData.lastname},
                 {emailAddres: userData.emailAddres},
                 {password: userData.password}
@@ -63,7 +63,7 @@ private authorizationService: AuthorizationService
         {
             existingmessage = 'Ezzel az email címmel már regisztráltak'
         }
-        if(existingUserFromDatebase.fistname === userData.firstname){
+        if(existingUserFromDatebase.firstname === userData.firstname){
             existingmessage = 'Ezzel a fistnammel már regisztráltak'
         }
         if(existingUserFromDatebase.lastname === userData.lastname){

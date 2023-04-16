@@ -4,6 +4,7 @@ import { CreateUserDto } from "../data_Dto/SignUp_create.dto";
 import { User } from "../entity/signUp.entity";
 import Token from "./token.entity";
 import crypto from 'crypto';
+import {randomBytes} from 'crypto';
 
 
 @Injectable()
@@ -19,7 +20,7 @@ async postUser(@Body() usersDto: CreateUserDto) {
   
     const alreadyExistingUser = await usersRepository.findOne({
       where: [
-        { fistname: usersDto.firstname },
+        { firstname: usersDto.firstname },
         { lastname: usersDto.lastname },
         { emailAddres: usersDto.emailAddres },
         { password: usersDto.password },
@@ -27,7 +28,7 @@ async postUser(@Body() usersDto: CreateUserDto) {
     });
   
     if (alreadyExistingUser) {
-      if (alreadyExistingUser.fistname === usersDto.firstname && alreadyExistingUser.lastname === usersDto.lastname) {
+      if (alreadyExistingUser.firstname === usersDto.firstname && alreadyExistingUser.lastname === usersDto.lastname) {
         return 'Ezzel a névvel már létezik regisztráció';
       }
       if (alreadyExistingUser.emailAddres === usersDto.emailAddres) {
@@ -49,10 +50,10 @@ async postUser(@Body() usersDto: CreateUserDto) {
     //token generálás
     async generateUserToken(user: User, tokenLength: number = 32): Promise<Token> {
       try {
-        const randomToken = crypto.randomBytes(tokenLength);
-        const randomTokenString = randomToken.toString('hex');
+        var randomToken = randomBytes(tokenLength);
+        var randomTokenString = randomToken.toString('hex');
         
-        const token = new Token();
+        var token = new Token();
         token.user = user;
         token.token = randomTokenString;
         await this.dataSource.getRepository(Token).save(token);

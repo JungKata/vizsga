@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouterProps } from "react-router-dom";
 import LogIn from "../../LogIn";  
 import { error } from "console";
+import { type } from "os";
+import { isRegExp } from "util/types";
 
 const email_regex = RegExp(/^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A -Z0–9]{2,4}\s?$/i);
 
@@ -95,19 +97,62 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
   };
 
   handleChange = (event: any) => {
-    console.log('handle change');
-  
     event.preventDefault();
-    const { name, value } = event.target;
-    console.log(value);
-    const dataError = this.state.error;
-    if(this.state.firstname.length < 3  && this.state.lastname.length < 3){
-        dataError.firstname  = 'Nem elég hosszú a név'
-    }
-    else if(this.state.emailaddress = email_regex.test){
+    const {name, value} = event.target
+
+    var error = this.state.error
+    switch (name) {
+      case 'firstname':
+        if (value.length < 3) {
+          error.firstname = 'A keresztnévnek legalább 3 karakter hosszúnak kell lennie!';
+        } else {
+          error.firstname = '';
+        }
+        break;
+    
+      case 'lastname':
+        if (value.length < 3) {
+          error.lastname = 'A vezetéknévnek legalább 3 karakter hosszúnak kell lennie!';
+        } else {
+          error.lastname = '';
+        }
+        break;
+    
+      case 'emailAddress':
+        if (email_regex.test(value)) {
+          error.emailaddress = '';
+        } else {
+          error.emailaddress = 'Az email cím nem megfelő formátumú';
+        }
+        break;
+    
+      case 'password':
+        if (value.length < 6) {
+          error.password = 'A jelszónak legalább 6 karakter hosszúnak kell lennie!';
+        } else {
+          error.password = '';
+        }
+        break;
+
+      case 'passwordAgain':
+      if (error.password || value !== password.value) {
+       return 'A jelszó nem egyezik';
+      }
+    break;
 
     }
   }
+   
+  handleSubmit = ( event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    this.setState({
+      alert: {type:"success", statusMessage:"Sikeresen regisztrált!", show: true }
+    })
+  } 
+    
+  
+
 
 
     render() {
@@ -127,22 +172,22 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
 
                 <div className='form-group'>
                   <label htmlFor="">Lastname: <span className='req'>*</span></label>
-                  <input type="text" className="form-control" required autoComplete='off' placeholder="Lastname" />
+                  <input type="text" name="lastname" className="form-control" required autoComplete='off' placeholder="Lastname" />
                 </div>
 
                 <div className='form-group'>
                   <label htmlFor="">Email Address:<span className='req'>*</span></label>
-                  <input type="email" className="form-control" required autoComplete='off' placeholder="Email Adress" />
+                  <input type="email" name="emailAddress" className="form-control" required autoComplete='off' placeholder="Email Adress" />
                 </div>
 
                 <div className='form-group'>
                   <label htmlFor="">Password: <span className='req'>*</span></label>
-                  <input type="password" className="form-control" required autoComplete="off" placeholder="Password"/>
+                  <input type="password" name="password" className="form-control" required autoComplete="off" placeholder="Password" />
                 </div>
 
                 <div className='form-group'>
                   <label htmlFor="">Password again: <span className='req'>*</span></label>
-                  <input type="password" className="form-control" required autoComplete="off" placeholder="Password Again"/>
+                  <input type="password" name="passwordAgain" id="passwordAgain" className="form-control" required autoComplete="off" placeholder="Password Again"/>
                   <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> <br />
                 </div><br />
 

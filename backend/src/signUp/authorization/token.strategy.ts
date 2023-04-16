@@ -12,7 +12,7 @@ export default class TokenStrategy extends PassportStrategy(Strategy, 'jwt-refre
     }
 
     async validate(token: string){
-        const user = this.authorizationService.findUserToken(token)
+        var user = this.authorizationService.findUserToken(token)
         if(!user == null){
             throw new UnauthorizedException;
             //ha nem található felhasználó dobjon hibát
