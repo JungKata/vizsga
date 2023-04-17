@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouterProps } from "react-router-dom";
 import LogIn from "../../LogIn";  
-import { error } from "console";
-import { type } from "os";
 import { isRegExp } from "util/types";
+
 
 const email_regex = RegExp(/^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A -Z0–9]{2,4}\s?$/i);
 
@@ -46,6 +45,7 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
 
   timeoutStatus: ReturnType<typeof setTimeout> | undefined;
 
+
   handleClose = () => {
     this.setState({ alert: { ...this.state.alert, show: false } });
   }
@@ -85,7 +85,7 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
 
     this.timeoutStatus = setTimeout(() =>{
       window.location.href = '/logIn'
-    },5000);
+    },8000);
     }
     else{
     this.setState({
@@ -129,8 +129,22 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
         break;
     
       case 'password':
+        const uppercaseRegExp   = /(?=.*?[A-Z])/;
+        const lowercaseRegExp   = /(?=.*?[a-z])/;
+        const digitsRegExp      = /(?=.*?[0-9])/;
+        const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+        const minLengthRegExp   = /.{8,}/; 
+
         if (value.length < 6) {
           error.password = 'A jelszónak legalább 6 karakter hosszúnak kell lennie!';
+        }else if(value != uppercaseRegExp){
+          error.password = 'A jelszónak legalább egy nagy betűt tartalmaznia kell'
+        } else if(value != lowercaseRegExp){
+          error.password = 'A jelszónak legalább egy kis betűt tartalmaznia kell'
+        } else if(value != digitsRegExp){
+          error.password = 'A jelszónak legalább egy számot tartalmaznia kell'
+        } else if(value != specialCharRegExp){
+          error.password = 'A jelszónak legalább egy speciális karaktert tartalmaznia kell'
         } else {
           error.password = '';
         }
@@ -152,12 +166,50 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
   handleSubmit = ( event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    this.setState({
-      alert: {type:"success", statusMessage:"Sikeresen regisztrált!", show: true }
-    })
-  } 
+    const isValid = Object.values(this.state.error).every((val) => val === "");
+
+    if (isValid) {
+      console.log("Registration can be done");
+      this.setState({
+        alert: { type: "success", statusMessage: "Sikeresen Regisztrált!!", show: true },
+   });
+    this.timeoutStatus = setTimeout(() => {
+    this.props.history.push("/quizMaker");
+    }, 5000);
+    }else {
+      console.log("Registration failed!");
+      this.setState({
+      alert: { type: "error", statusMessage: "Nem sikerült regisztrálni!", show: true },
+    });
+  }
+}
     
-  
+handleLogin = () => {
+  const { history } = this.props;
+  history.push("/quizMaker")
+
+};
+
+constructor(props: SignUpProps){
+  super(props)
+  const startStatus : SignUpStatus = {
+    firstname: '',
+    lastname: '',
+    emailaddress: '',
+    password: '',
+    passwordAgain: '',
+      error: {
+        firstname: '',
+        lastname: '',
+        emailaddress: '',
+        password: '',
+        passwordAgain: ''
+      },
+      alert: {type: "success", statusMessage: '', show: false},
+  }
+  this.state = startStatus;
+  this.handleChange = this.handleChange.bind(this);
+}
 
 
 
@@ -209,7 +261,10 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
 
             </div>
         </div>
+
+      //https://www.cluemediator.com/password-and-confirm-password-validation-in-react
     }
   }
+
 
 
