@@ -13,6 +13,9 @@ import { UserService } from './signUp/signUp.service';
 import { AuthorizationController } from './signUp/authorization/authorization.controller';
 import { AuthModule } from './signUp/authorization/authorization.module';
 import Token from './signUp/authorization/token.entity';
+import { AuthorizationService } from './signUp/authorization/authorization.service';
+import TokenStrategy from './signUp/authorization/token.strategy';
+import { ProfileModule } from './LogIn/LogIn.module';
 
 
 
@@ -32,8 +35,11 @@ import Token from './signUp/authorization/token.entity';
     }),
     UserModule,
     AuthModule,
+    ProfileModule
+    
+    
   ],
-  controllers: [AppController], 
-  providers: [AppService],
+  controllers: [AppController,AuthorizationController,], 
+  providers: [AppService, AuthorizationService, TokenStrategy, ProfileService],
 })
 export class AppModule {}

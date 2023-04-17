@@ -14,13 +14,13 @@ interface SignUpProps extends BrowserRouterProps{
 interface SignUpStatus{
   firstname: string;
   lastname: string;
-  emailaddress: string;
+  emailAddress: string;
   password: string;
   passwordAgain: string
   error: {
     firstname: string;
     lastname: string;
-    emailaddress: string;
+    emailAddress: string;
     password: string;
     passwordAgain: string
   }
@@ -50,23 +50,23 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
   }
 
   handleUpload = async () => {
-    const {firstname, lastname, emailaddress, password,passwordAgain} = this.state;
+    const {firstname, lastname, emailAddress, password} = this.state;
 
     const SignUpData = {
       firstname: firstname,
       lastname: lastname,
-      emailaddress: emailaddress,
-      password: password,
-      passwordAgain: passwordAgain
+      emailAddress: emailAddress,
+      password: password
+      
     }
   
-    let response = await fetch('https://localhost:3000/authorization/user', {
+    let response = await fetch('http://localhost:3000/authorization/user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(SignUpData),
-    })
+    });
 
     const { statusMessage } = await response.json();
     const isSuccess = response.ok && statusMessage === 'Sikeres regisztrált';
@@ -74,9 +74,9 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
     this.setState({
         firstname: isSuccess ? '' : this.state.firstname,
         lastname: isSuccess ? '' : this.state.lastname,
-        emailaddress: isSuccess ? '' : this.state.emailaddress,
+        emailAddress: isSuccess ? '' : this.state.emailAddress,
         password: isSuccess ? '' : this.state.password,
-        passwordAgain: isSuccess ? '' : this.state.passwordAgain,
+        
     alert: {
         type: isSuccess ? 'success' : this.state.alert.type,
         statusMessage: isSuccess ? 'Sikeresen regisztrált' : this.state.alert.statusMessage,
@@ -123,9 +123,9 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
     
       case 'emailAddress':
         if (email_regex.test(value)) {
-          error.emailaddress = '';
+          error.emailAddress = '';
         } else {
-          error.emailaddress = 'Az email cím nem megfelő formátumú';
+          error.emailAddress = 'Az email cím nem megfelő formátumú';
         }
         break;
     
@@ -195,13 +195,13 @@ constructor(props: SignUpProps){
   const startStatus : SignUpStatus = {
     firstname: '',
     lastname: '',
-    emailaddress: '',
+    emailAddress: '',
     password: '',
     passwordAgain: '',
       error: {
         firstname: '',
         lastname: '',
-        emailaddress: '',
+        emailAddress: '',
         password: '',
         passwordAgain: ''
       },
@@ -245,8 +245,8 @@ constructor(props: SignUpProps){
                 <div className='form-group'>
                   <label htmlFor="">Email Address:<span className='req'>*</span></label>
                   <input type="email" name="emailAddress" onChange={this.handleChange} className="form-control" required autoComplete='off' placeholder="Email Adress" />
-                  {error.emailaddress
-                  ? <span style={{ color: "red" }}>{error.emailaddress}</span>
+                  {error.emailAddress
+                  ? <span style={{ color: "red" }}>{error.emailAddress}</span>
                   : null
                   }
                 </div>

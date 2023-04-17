@@ -7,6 +7,7 @@ import TokenStrategy from "./token.strategy";
 import { UserModule } from "../signUp.module";
 import { UserService } from "../signUp.service";
 import Token from "./token.entity";
+import { UserController } from "../signUp.controller";
 
 
 

@@ -1,10 +1,13 @@
 import { IsEmail, IsNumber, IsString } from "class-validator";
+import { PrimaryGeneratedColumn } from "typeorm";
 
 
 
 export class CreateUserDto{
 
-  
+  @PrimaryGeneratedColumn()
+    id: number;
+
     @IsString()
     firstname: string;
 
@@ -13,7 +16,7 @@ export class CreateUserDto{
 
     @IsEmail()
     emailAddres: string;
-    id: number;
+    
 
     @IsString()
     password: string;

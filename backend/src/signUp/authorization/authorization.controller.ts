@@ -45,7 +45,7 @@ private authorizationService: AuthorizationService
     @Post('user')
         async postRegisztracio(@Body() userData: CreateUserDto){
         const usersRepository = this.dataSource.getRepository(User)
-        
+        console.log('alma');
 
     //ellenőrzés
     const existingUserFromDatebase = await usersRepository.findOne({
