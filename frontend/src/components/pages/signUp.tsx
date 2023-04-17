@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouterProps } from "react-router-dom";
-import LogIn from "../../LogIn";  
-import { isRegExp } from "util/types";
+
 
 
 const email_regex = RegExp(/^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A -Z0–9]{2,4}\s?$/i);
@@ -51,13 +50,14 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
   }
 
   handleUpload = async () => {
-    const {firstname, lastname, emailaddress, password} = this.state;
+    const {firstname, lastname, emailaddress, password,passwordAgain} = this.state;
 
     const SignUpData = {
       firstname: firstname,
       lastname: lastname,
       emailaddress: emailaddress,
       password: password,
+      passwordAgain: passwordAgain
     }
   
     let response = await fetch('https://localhost:3000/authorization/user', {
@@ -76,6 +76,7 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
         lastname: isSuccess ? '' : this.state.lastname,
         emailaddress: isSuccess ? '' : this.state.emailaddress,
         password: isSuccess ? '' : this.state.password,
+        passwordAgain: isSuccess ? '' : this.state.passwordAgain,
     alert: {
         type: isSuccess ? 'success' : this.state.alert.type,
         statusMessage: isSuccess ? 'Sikeresen regisztrált' : this.state.alert.statusMessage,
@@ -133,31 +134,33 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
         const lowercaseRegExp   = /(?=.*?[a-z])/;
         const digitsRegExp      = /(?=.*?[0-9])/;
         const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
-        const minLengthRegExp   = /.{8,}/; 
+        
+        
 
         if (value.length < 6) {
           error.password = 'A jelszónak legalább 6 karakter hosszúnak kell lennie!';
-        }else if(value != uppercaseRegExp){
+        }else if(!uppercaseRegExp.test(value)){
           error.password = 'A jelszónak legalább egy nagy betűt tartalmaznia kell'
-        } else if(value != lowercaseRegExp){
+        } else if(!lowercaseRegExp.test(value)){
           error.password = 'A jelszónak legalább egy kis betűt tartalmaznia kell'
-        } else if(value != digitsRegExp){
+        } else if(!digitsRegExp.test(value)){
           error.password = 'A jelszónak legalább egy számot tartalmaznia kell'
-        } else if(value != specialCharRegExp){
+        } else if(!specialCharRegExp.test(value)){
           error.password = 'A jelszónak legalább egy speciális karaktert tartalmaznia kell'
         } else {
           error.password = '';
         }
         break;
 
-      case 'passwordAgain':
-      if (error.password && value !== error.passwordAgain) {
-       return 'A jelszó és a jelszó újra nem egyezik';
-      }
-    break;
-
-    default:
-    break;
+        case 'passwordAgain':
+        if (value !== this.state.password) {
+        error.passwordAgain = 'A két jelszó nem egyezik';
+        }else{
+          error.passwordAgain = '';
+        }
+        break;
+      default:
+      break;
 
     }
     this.setState(Object.assign(this.state, { error, [name]: value }));
@@ -169,15 +172,13 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
     const isValid = Object.values(this.state.error).every((val) => val === "");
 
     if (isValid) {
-      console.log("Registration can be done");
       this.setState({
         alert: { type: "success", statusMessage: "Sikeresen Regisztrált!!", show: true },
    });
     this.timeoutStatus = setTimeout(() => {
-    this.props.history.push("/quizMaker");
-    }, 5000);
+      window.location.href = '/logIn'
+    }, 8000);
     }else {
-      console.log("Registration failed!");
       this.setState({
       alert: { type: "error", statusMessage: "Nem sikerült regisztrálni!", show: true },
     });
@@ -185,8 +186,7 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
 }
     
 handleLogin = () => {
-  const { history } = this.props;
-  history.push("/quizMaker")
+  window.location.href = '/logIn'
 
 };
 
@@ -221,36 +221,66 @@ constructor(props: SignUpProps){
                 <div id='signup'>
                 <h1 id="sign_felirat">Sign Up</h1>
 
-            
-              <div className='top-row'>
+              <form onSubmit={this.handleSubmit} noValidate>
+              <div className='top-row' >
                 <div className='form-group'>
                   <label htmlFor="">Firstname: <span className='req'>{error.firstname}</span></label>
-                  <input type="text" className="form-control" required autoComplete='off' placeholder="Firstname" name="fistname" />
+                  <input type="text" name="firstname" onChange={this.handleChange} className="form-control" required autoComplete='off' placeholder="Firstname" />
+                  {error.firstname
+                  ? <span style={{ color: "red" }}>{error.firstname}</span>
+                  : null
+                  }
+
                 </div>
 
                 <div className='form-group'>
                   <label htmlFor="">Lastname: <span className='req'>*</span></label>
-                  <input type="text" name="lastname" className="form-control" required autoComplete='off' placeholder="Lastname" />
+                  <input type="text" name="lastname" onChange={this.handleChange} className="form-control" required autoComplete='off' placeholder="Lastname" />
+                  {error.lastname
+                  ? <span style={{ color: "red" }}>{error.lastname}</span>
+                  : null
+                  }
                 </div>
 
                 <div className='form-group'>
                   <label htmlFor="">Email Address:<span className='req'>*</span></label>
-                  <input type="email" name="emailAddress" className="form-control" required autoComplete='off' placeholder="Email Adress" />
+                  <input type="email" name="emailAddress" onChange={this.handleChange} className="form-control" required autoComplete='off' placeholder="Email Adress" />
+                  {error.emailaddress
+                  ? <span style={{ color: "red" }}>{error.emailaddress}</span>
+                  : null
+                  }
                 </div>
 
                 <div className='form-group'>
                   <label htmlFor="">Password: <span className='req'>*</span></label>
-                  <input type="password" name="password" className="form-control" required autoComplete="off" placeholder="Password" />
+                  <input type="password" name="password" onChange={this.handleChange} className="form-control" required autoComplete="off" placeholder="Password" />
+                  {error.password
+                  ? <span style={{ color: "red" }}>{error.password}</span>
+                  : null
+                  }
                 </div>
 
                 <div className='form-group'>
                   <label htmlFor="">Password again: <span className='req'>*</span></label>
-                  <input type="password" name="passwordAgain" id="passwordAgain" className="form-control" required autoComplete="off" placeholder="Password Again"/>
+                  <input type="password" name="passwordAgain" onChange={this.handleChange} className="form-control" required autoComplete="off" placeholder="Password Again"/>
+                  {error.passwordAgain
+                  ? <span style={{ color: "red" }}>{error.passwordAgain}</span>
+                  : null
+                  }
+                  <br />
+                
+
                   <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> <br />
                 </div><br />
 
-                <button type='submit' className='button button-block' id="gomb">Sign Up</button><br />
+                
+                <button type='submit' className='button button-block' id="gomb" onClick={this.handleUpload}>Sign Up</button><br />
+                
+                <div >
+                <button type="submit" className="button button-block" id="gomb" onClick={this.handleLogin}>Login</button>
                 </div>
+
+              </div>
             
                 {alert.show && (
                 <div className={`alert ${alert.type}`}>
@@ -259,6 +289,7 @@ constructor(props: SignUpProps){
                 </div>
               )}
 
+            </form>
             </div>
         </div>
 
