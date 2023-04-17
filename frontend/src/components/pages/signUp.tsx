@@ -18,11 +18,13 @@ interface SignUpStatus{
   lastname: string;
   emailaddress: string;
   password: string;
+  passwordAgain: string
   error: {
     firstname: string;
     lastname: string;
     emailaddress: string;
     password: string;
+    passwordAgain: string
   }
   alert: AlertStatus;
 }
@@ -135,12 +137,16 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
         break;
 
       case 'passwordAgain':
-      if (error.password || value !== password.value) {
-       return 'A jelszó nem egyezik';
+      if (error.password && value !== error.passwordAgain) {
+       return 'A jelszó és a jelszó újra nem egyezik';
       }
     break;
 
+    default:
+    break;
+
     }
+    this.setState(Object.assign(this.state, { error, [name]: value }));
   }
    
   handleSubmit = ( event: React.FormEvent<HTMLFormElement>) => {
