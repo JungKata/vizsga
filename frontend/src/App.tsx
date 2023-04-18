@@ -39,9 +39,10 @@ class App extends Component {
       <main>
         <Routes>
           <Route path='/signUp' element={<SignUp alert={{ type: 'success', statusMessage: '' }} />}></Route>
-          {/* <SignUp alert={{ type: 'success', message: '' }} /> */}
-        
-          <Route path='/logIn' element={<LogIn />}></Route>
+          <Route path='/logIn' element={<LogIn 
+          Usertoken={authToken}
+          UsertokenChange={(token) => this.setState({ authToken: token })}
+          />}></Route>
           <Route path='/quizMaker' element={<QuizMaker />}></Route>
         </Routes>
       </main>

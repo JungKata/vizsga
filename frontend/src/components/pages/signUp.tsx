@@ -84,9 +84,9 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
       },
     });
 
-    this.timeoutStatus = setTimeout(() =>{
-      window.location.href = '/logIn'
-    },8000);
+     this.timeoutStatus = setTimeout(() =>{
+       window.location.href = '/logIn'
+     },8000);
     }
     else{
     this.setState({
@@ -175,9 +175,9 @@ export default class SignUp extends Component<SignUpProps, SignUpStatus>{
       this.setState({
         alert: { type: "success", statusMessage: "Sikeresen Regisztrált!!", show: true },
    });
-    this.timeoutStatus = setTimeout(() => {
-      window.location.href = '/logIn'
-    }, 8000);
+     this.timeoutStatus = setTimeout(() => {
+       window.location.href = '/logIn'
+     }, 8000);
     }else {
       this.setState({
       alert: { type: "error", statusMessage: "Nem sikerült regisztrálni!", show: true },
@@ -224,7 +224,7 @@ constructor(props: SignUpProps){
               <form onSubmit={this.handleSubmit} noValidate>
               <div className='top-row' >
                 <div className='form-group'>
-                  <label htmlFor="">Firstname: <span className='req'>{error.firstname}</span></label>
+                  <label htmlFor="">Firstname: </label>
                   <input type="text" name="firstname" onChange={this.handleChange} className="form-control" required autoComplete='off' placeholder="Firstname" />
                   {error.firstname
                   ? <span style={{ color: "red" }}>{error.firstname}</span>

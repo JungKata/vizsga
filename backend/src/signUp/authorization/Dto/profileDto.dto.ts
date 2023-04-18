@@ -5,7 +5,7 @@ export default class profileDto{
     
 
     @IsEmail()
-    emailAddres: string;
+    emailAddress: string;
 
     @IsString()
     password: string;

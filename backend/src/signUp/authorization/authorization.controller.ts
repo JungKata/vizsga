@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Post, UnauthorizedException } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Delete, Post, Req, UnauthorizedException } from "@nestjs/common";
 import { DataSource } from "typeorm";
 import { AuthorizationService } from "./authorization.service";
 import profileDto from "./Dto/profileDto.dto";
@@ -12,46 +12,18 @@ export class AuthorizationController{
 constructor(
 private dataSource: DataSource,
 private authorizationService: AuthorizationService
-){
+){}
 
-}
-
-@Post('loginProfile')
-    async login(@Body() profileData : profileDto){
-        const usersRepository = this.dataSource.getRepository(User)
-        const user = await usersRepository.findOne({
-            where: {emailAddres : profileData.emailAddres},
-        });
-        if(!user){
-            throw new UnauthorizedException('Hibás email vagy jelszó')
-        }
-        
-        const passMatch = await bcrypt.compare(
-            profileData.password,
-            user.password
-        );
-
-        if(!passMatch){
-            throw new UnauthorizedException('Hibás email vagy jelszó')
-        }
-
-        var tokenForUser = await this.authorizationService.generateUserToken(user)
-        return{tokenForUser}
-    }
-    
-    
-    
-    
     @Post('user')
         async postRegisztracio(@Body() userData: CreateUserDto){
         const usersRepository = this.dataSource.getRepository(User)
-        console.log('alma');
+        
 
     //ellenőrzés
     const existingUserFromDatebase = await usersRepository.findOne({
         where:[ {firstname: userData.firstname},
                 {lastname: userData.lastname},
-                {emailAddres: userData.emailAddres},
+                {emailAddress: userData.emailAddress},
                 {password: userData.password}
             ],
 
@@ -59,7 +31,7 @@ private authorizationService: AuthorizationService
 
     if(existingUserFromDatebase){
     let existingmessage = '';
-        if(existingUserFromDatebase.emailAddres === userData.emailAddres)
+        if(existingUserFromDatebase.emailAddress === userData.emailAddress)
         {
             existingmessage = 'Ezzel az email címmel már regisztráltak'
         }
@@ -85,10 +57,46 @@ private authorizationService: AuthorizationService
         console.error('Error saving user to database:', error.message);
       }
       
-      
-      
-      
-      
+}
+
+@Post('loginProfile')
+    async login(@Body() profileData : profileDto){
+        const usersRepository = this.dataSource.getRepository(User)
+        const user = await usersRepository.findOne({
+            where: {emailAddress : profileData.emailAddress},
+        });
+        if(!user){
+            throw new UnauthorizedException('Hibás email vagy jelszó')
+        }
+        
+        const passMatch = await bcrypt.compare(
+            profileData.password,
+            user.password
+        );
+
+        if(!passMatch){
+            throw new UnauthorizedException('Hibás email vagy jelszó')
+        }
+
+        var tokenForUser = await this.authorizationService.generateUserToken(user)
+        return{tokenForUser}
+    }
+
+    @Delete('LogOut')
+    async extractToken(@Req () request){
+        try{
+            const authHeader = request.headers.authorization;
+            if (!authHeader) {
+                throw new Error('Authorization header hiányzik');
+              }
+              const token = authHeader.split(' ')[1];
+              await this.authorizationService.deleteUserToken(token);
+              return{message: 'Kijelentkezés sikeres'};
+        }catch(error){
+            return {error: error.message};
+        }
+    }
+    
 
 
-}}
+}

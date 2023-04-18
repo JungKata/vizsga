@@ -5,7 +5,7 @@ import { UserService } from "./signUp.service";
 import { AuthGuard } from "@nestjs/passport";
 
 
-@Controller('user')
+@Controller('users')
 export class UserController{
     module: any;
 
@@ -41,7 +41,7 @@ export class UserController{
 ownLogin(@Req() req) {
   const user: User = req.user;
   return {
-    email: user.emailAddres
+    email: user.emailAddress
   };
 }
    

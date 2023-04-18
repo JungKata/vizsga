@@ -1,10 +1,11 @@
-import { Body, Delete, Get, Injectable, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Injectable, Post } from "@nestjs/common";
 import { DataSource, IsNull } from "typeorm";
 import { CreateUserDto } from "../data_Dto/SignUp_create.dto";
 import { User } from "../entity/signUp.entity";
 import Token from "./token.entity";
 import crypto from 'crypto';
 import {randomBytes} from 'crypto';
+
 
 
 @Injectable()
@@ -14,7 +15,6 @@ constructor(private dataSource: DataSource){
 
 
 //Regisztráció
-
 async postUser(@Body() usersDto: CreateUserDto) {
     const usersRepository = this.dataSource.getRepository(User);
   
@@ -22,7 +22,7 @@ async postUser(@Body() usersDto: CreateUserDto) {
       where: [
         { firstname: usersDto.firstname },
         { lastname: usersDto.lastname },
-        { emailAddres: usersDto.emailAddres },
+        { emailAddress: usersDto.emailAddress },
         { password: usersDto.password },
       ],
     });
@@ -31,7 +31,7 @@ async postUser(@Body() usersDto: CreateUserDto) {
       if (alreadyExistingUser.firstname === usersDto.firstname && alreadyExistingUser.lastname === usersDto.lastname) {
         return 'Ezzel a névvel már létezik regisztráció';
       }
-      if (alreadyExistingUser.emailAddres === usersDto.emailAddres) {
+      if (alreadyExistingUser.emailAddress === usersDto.emailAddress) {
         return 'Ezzel az email címmel már létezik regisztráció';
       }
     }
