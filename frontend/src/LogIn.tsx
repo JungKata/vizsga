@@ -52,10 +52,10 @@ interface LogInStatus{
         this.setState({ error: errorMessage });
         return;
       }
+      window.location.href = '/quizMaker'
     
-    
-    const Usertoken = await response.json().token;
-    localStorage.setItem('Usertoken', Usertoken);
+    const Usertoken = await response.json();
+    localStorage.setItem('Usertoken', Usertoken.token);
     this.setState({
         emailAddress: '',
         password: '',
@@ -107,9 +107,9 @@ interface LogInStatus{
 
     render(){
 
-        const {UserToken} = this.props;
+        const {Usertoken} = this.props;
         const { emailAddress, password, error } = this.state;
-        const logInStatus = UserToken !== '';
+        const logInStatus = Usertoken !== '';
 
         return <div>
 

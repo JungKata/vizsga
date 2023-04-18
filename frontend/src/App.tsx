@@ -7,11 +7,21 @@ import 'bootstrap/dist/css/bootstrap.css';
 import LogIn from './LogIn';
 import QuizMaker from './components/pages/QuizMaker';
 
+interface State{
+  Usertoken: string;
+}
 
-class App extends Component {
+class App extends React.Component<{}, State> {
+  constructor (props: {}){
+    super(props);
+    this.state= {
+      Usertoken: ''
+    }
+  }
 
 
   render() {
+    const { Usertoken } = this.state;
     return <div className='html'>
 
       <div className='container-fluid' id='menu'>
@@ -40,8 +50,8 @@ class App extends Component {
         <Routes>
           <Route path='/signUp' element={<SignUp alert={{ type: 'success', statusMessage: '' }} />}></Route>
           <Route path='/logIn' element={<LogIn 
-          Usertoken={authToken}
-          UsertokenChange={(token) => this.setState({ authToken: token })}
+          Usertoken={Usertoken}
+          UsertokenChange={(token) => this.setState({ Usertoken: token })}
           />}></Route>
           <Route path='/quizMaker' element={<QuizMaker />}></Route>
         </Routes>
