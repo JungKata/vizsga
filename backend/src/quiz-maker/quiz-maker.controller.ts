@@ -2,15 +2,30 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { QuizMakerService } from './quiz-maker.service';
 import { CreateQuizMakerDto } from './dto/create-quiz-maker.dto';
 import { UpdateQuizMakerDto } from './dto/update-quiz-maker.dto';
+import { DataSource } from 'typeorm';
+import { quizMaker } from './entities/quiz-maker.entity';
 
 @Controller('quiz-maker')
 export class QuizMakerController {
-  constructor(private readonly quizMakerService: QuizMakerService) {}
+  constructor(private readonly quizMakerService: QuizMakerService,
+    private dataSource: DataSource,
+    ) {}
 
-  @Post()
-  create(@Body() createQuizMakerDto: CreateQuizMakerDto) {
-    return this.quizMakerService.create(createQuizMakerDto);
-  }
+  @Post('newQuestion')
+  async newQuestion(@Body() questionData: CreateQuizMakerDto){
+  const questionRepository = this.dataSource.getRepository(quizMaker)
+  
+    try{
+      const questionId = questionData.id || '';
+      const saveQuestion = Object.assign(new quizMaker(), questionData);
+      saveQuestion.id == questionId;
+      await questionRepository.save(saveQuestion);
+      console.log(saveQuestion);
+    }catch(error){
+      console.error('Error saving question to database', error.message);
+    }
+}
+
 
   @Get()
   findAll() {
