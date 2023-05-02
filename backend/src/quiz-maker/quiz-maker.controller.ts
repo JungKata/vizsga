@@ -7,6 +7,7 @@ import { quizMaker } from './entities/quiz-maker.entity';
 
 @Controller('quiz-maker')
 export class QuizMakerController {
+  
   constructor(private readonly quizMakerService: QuizMakerService,
     private dataSource: DataSource,
     ) {}
@@ -27,7 +28,7 @@ export class QuizMakerController {
 }
 
 
-  @Get()
+  @Get('allQuestion')
   findAll() {
     return this.quizMakerService.findAll();
   }
@@ -36,10 +37,9 @@ export class QuizMakerController {
   findOne(@Param('id') id: string) {
     return this.quizMakerService.findOne(+id);
   }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateQuizMakerDto: UpdateQuizMakerDto) {
-    return this.quizMakerService.update(+id, updateQuizMakerDto);
+  @Patch()
+  update(@Param('id') id: string, @Body() updateQuestionDto: UpdateQuizMakerDto){
+    return this.quizMakerService.updateQuestion(+id, updateQuestionDto);
   }
 
   @Delete(':id')

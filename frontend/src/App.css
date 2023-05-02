@@ -163,7 +163,7 @@ input{
     
   }
  
-  #lehetoseg, #fokerdes,#valaszlehetoseg {
+  #tema, #fokerdes,#valaszlehetoseg {
     text-align: center;
     display: block;
     width: auto;
@@ -172,8 +172,9 @@ input{
     
   }
 
-  #lehetoseg{
-    padding-top: 45px;
+  #tema{
+    padding-top: 35px;
+    padding-bottom: 50px;
   }
 
   #fokerdes{

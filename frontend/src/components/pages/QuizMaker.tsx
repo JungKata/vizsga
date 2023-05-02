@@ -1,16 +1,27 @@
 import { Component } from "react";
 
 
+// interface QuizStatus{
+//     tema: string;
+//     kerdes: string;
+//     valasz_1: string;
+//     valasz_2: string;
+//     valasz_3: string;
+//     valasz_4: string;
+//     helyes_valasz: string;
+// }
+
 export default class QuizMaker extends Component{
+
     render(){
         return <div id="kviz">
 
                 <div id="kviz-kinezet">
-             <h1 id="lehetoseg">What Type Of Thing Are You?</h1>
+             <h1 id="fokerdes">Melyik a kedvenc gyümölcsöd?</h1>
              
              <div className="kerdes_Egy">
-             <      h2 id="fokerdes">
-                            Első Kérdés?
+             <      h2 id="tema">
+                        teszt
                     </h2>
              </div>
 

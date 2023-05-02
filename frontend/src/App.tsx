@@ -4,7 +4,7 @@ import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import SignUp from './components/pages/signUp'
 import 'bootstrap/dist/css/bootstrap.css';
 //import { Navbar } from 'react-bootstrap';
-import LogIn from './LogIn';
+import LogIn from './components/pages/LogIn';
 import QuizMaker from './components/pages/QuizMaker';
 
 interface State{

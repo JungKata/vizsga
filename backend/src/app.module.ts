@@ -13,6 +13,9 @@ import { AuthorizationService } from './signUp/authorization/authorization.servi
 import TokenStrategy from './signUp/authorization/token.strategy';
 import { ProfileModule } from './LogIn/LogIn.module';
 import { QuizMakerModule } from './quiz-maker/quiz-maker.module';
+import { quizMaker } from './quiz-maker/entities/quiz-maker.entity';
+import { QuizMakerService } from './quiz-maker/quiz-maker.service';
+import { QuizMakerController } from './quiz-maker/quiz-maker.controller';
 
 
 
@@ -26,7 +29,7 @@ import { QuizMakerModule } from './quiz-maker/quiz-maker.module';
       password: process.env.DB_PASSWORD || '',
       database: process.env.DB_DATABASE || 'quizer_racer',
       entities: [
-       User,LogInUser,Token
+       User,LogInUser,Token,quizMaker
       ],
       synchronize: true,
     }),
@@ -37,8 +40,8 @@ import { QuizMakerModule } from './quiz-maker/quiz-maker.module';
     
     
   ],
-  controllers: [AppController,AuthorizationController,], 
-  providers: [AppService, AuthorizationService, TokenStrategy, ProfileService],
+  controllers: [AppController], 
+  providers: [AppService],
 })
 export class AppModule {}
 
