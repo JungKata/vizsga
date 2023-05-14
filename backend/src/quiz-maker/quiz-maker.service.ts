@@ -8,10 +8,11 @@ import { Repository } from 'typeorm';
 @Injectable()
 
 export class QuizMakerService {
+  [x: string]: any;
   
   constructor(@InjectRepository(quizMaker) private  questionRepository: Repository<quizMaker>) { }
 
-  async getQuestion(question: quizMaker): Promise<quizMaker[]> {
+async getQuestion(question: quizMaker): Promise<quizMaker[]> {
     return await this.questionRepository.find();
 }
 

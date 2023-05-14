@@ -13,26 +13,27 @@ export class UserController{
 
     //összes user 
     @Get()
-    findAll(){
+    findAll(@Req() request: Request): Promise<User[]>{
         return this.service.findAll();
     }
 
     //id alapú keresés
     @Get(':id')
-   findOne(@Param('id') id:string){
-        return this.service.findOne(+id);
+   findOne(@Param('id') id:number){
+        return this.service.findOne(id);
    }
 
    //törlés id alapján
    @Delete(':id')
-    remove(@Param('id') id: string){
-        return this.service.remove(+id);
+    remove(@Param('id') id: number){
+        return this.service.remove(id);
     }
 
     //modósítás id alapján
-    @Patch()
+    @Patch(':id')
     update(@Param('id') id: string, @Body() updateDto: UpdateDto){
         return this.service.update(+id, updateDto);
+
     }
 
     //lekérés
