@@ -57,6 +57,29 @@ A komponens továbbá tartalmaz egy "Sign Up" gombot is, amelyre kattintva a fel
 
 A LogIn komponens felelős a bejelentkezési és kijelentkezési folyamatok kezeléséért, valamint a navigációért a regisztrációs oldalra.
 
+# QuizMaker
+A QuizMaker komponens a kvíz megjelenítéséért felelős.
+A kérdések véletlenszerűen kerülnek kiválasztásra a rendelkezésre álló kérdéssorozatból.
+Minden kérdéshez több választási lehetőség tartozik, amelyek közül ki kell választanod a helyes választ.
+
+![image](https://github.com/JungKata/vizsga/assets/97729333/260676cb-df74-48f7-9798-e34af5a692f2)
+
+Az adatokat külső forrásból, adatbáziból tölti be. Majd random sorsolja ki a kérdéseket a válaszokkal.
+
+A rendszer értékeli a válaszaidat és pontszámot ad neked az elért eredmények alapján.
+A pontszámod a helyes válaszok számától függ.
+A játék végén megjelenik a végleges pontszám.
+
+<h1 align=center> A weboldal futtatása</h1>
+ 
+# Első lépés -XAMPP
+A weboldalunk futtatásához először el kell indítanunk az XAMPP szoftvert, majd aktiválnunk kell az Apache és MySQL szolgáltatásokat. Ez azért szükséges, mert a weboldal működéséhez egy webszervert és egy adatbázis-szervert is használunk.
+
+# Második lépés - Backend futtatása
+Nyissuk meg a Visual Studio Code programot. Ez után másoljuk be 
+  
+
+
 
 # Getting Started with Create React App
 
