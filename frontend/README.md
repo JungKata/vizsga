@@ -13,7 +13,7 @@ A főoldal tarmaz:
 - és a készítő elérhetőségét 
 
 
-![image](https://github.com/JungKata/vizsga/assets/97729333/2edc85fe-9362-458a-81d5-b100ba759173)
+![fooldal](https://github.com/JungKata/vizsga/blob/master/images/Fomenu.PNG)
 
 # Sign Up
 A SignUp egy React osztálykomponenst tartalmaz, amely az űrlapkezelést és a regisztrációs folyamatot valósítja meg egy SignUp nevű oldalon. 
@@ -26,7 +26,7 @@ Az űrlap a következő mezőket tartalmazza:
 - password
 - passwordAgain
 
-![image](https://github.com/JungKata/vizsga/assets/97729333/37eabce8-9ed0-4d50-ad52-a761b2ea6629)
+![signUp](https://github.com/JungKata/vizsga/blob/master/images/signUp.PNG)
 
 - Az űrlapot kitöltve a felhasználó a "Sign Up" gombra kattintva regisztrálhat. Az alábbiakban találhatók a funkcionalitások:
 - Űrlap validáció: Az űrlap valamennyi mezőjét ellenőrzi, és hibát jelez, ha a mezők nem megfelelően vannak kitöltve. A hibaüzenetek a megfelelő mezők mellett jelennek meg.
@@ -34,7 +34,7 @@ Az űrlap a következő mezőket tartalmazza:
 - Átirányítás: Ha a regisztráció sikeres volt, a felhasználót átirányítja a "logIn" oldalra.
 - Hibaüzenetek: Ha bármilyen hiba történik a regisztráció során, a komponens megjeleníti az error típusú üzenetet.
 
-![image](https://github.com/JungKata/vizsga/assets/97729333/2c34bc10-5d35-4b8a-9bd7-d553b8ab4b42)
+![error](https://github.com/JungKata/vizsga/blob/master/images/error.PNG)
 
 A komponens továbbá rendelkezik egy Alert komponenssel, amely a sikeres vagy sikertelen regisztráció üzenetek megjelenítését végzi.
 
@@ -47,7 +47,7 @@ Az űrlap a következő mezőket tartalmazza:
 - emailAddress
 - password
 
-![image](https://github.com/JungKata/vizsga/assets/97729333/b8f2e453-c503-47e7-aeb2-16f906502660)
+![bejelentkezes](https://github.com/JungKata/vizsga/blob/master/images/bejelenkezes.PNG)
 
 A komponensben van egy "Log Out" gomb is, amelyre kattintva a felhasználó kijelentkezik. Ez a funkció a szervernek elküldi a kijelentkezési kérést a felhasználói tokennel. Amikor a kijelentkezés sikeres, a felhasználói token törlődik, és a komponens frissíti az állapotot.
 
@@ -62,7 +62,7 @@ A QuizMaker komponens a kvíz megjelenítéséért felelős.
 A kérdések véletlenszerűen kerülnek kiválasztásra a rendelkezésre álló kérdéssorozatból.
 Minden kérdéshez több választási lehetőség tartozik, amelyek közül ki kell választanod a helyes választ.
 
-![image](https://github.com/JungKata/vizsga/assets/97729333/260676cb-df74-48f7-9798-e34af5a692f2)
+![quiz](https://github.com/JungKata/vizsga/blob/master/images/quiz.PNG)
 
 Az adatokat külső forrásból, adatbáziból tölti be. Majd random sorsolja ki a kérdéseket a válaszokkal.
 
@@ -75,8 +75,14 @@ A játék végén megjelenik a végleges pontszám.
 # Első lépés -XAMPP
 A weboldalunk futtatásához először el kell indítanunk az XAMPP szoftvert, majd aktiválnunk kell az Apache és MySQL szolgáltatásokat. Ez azért szükséges, mert a weboldal működéséhez egy webszervert és egy adatbázis-szervert is használunk.
 
-# Második lépés - Backend futtatása
-Nyissuk meg a Visual Studio Code programot. Ez után másoljuk be 
+# Második lépés - futtatás
+Nyissuk meg a Visual Studio Code programot. Ez után másoljuk be https://github.com/JungKata/vizsga.git linket. Mentsük el a projektet.
+- Backend
+Nyissuk meg a backend mappában lévő fájlokat. Majd a terminálban írjuk be a "npm install" parancsot, hogy telepítsük a szükséges modulokat. Miután ez megtörtént, futtassuk a "npm run start:debug" parancsot a terminálból, hogy elindítsuk a backend szerverünket.
+
+-Frontend
+Nyissuk meg a frontend mappában lévő fájlokat. Majd a terminálban írjuk be a "npm install" parancsot, hogy telepítsük a szükséges modulokat. Miután ez megtörtént, futtassuk a "npm run start" parancsot a terminálból, hogy elindítsuk a frontend szerverünket.
+Fontos, hogy a 3001 porton indítsuk a frontend szerverünket, mivel a 3000 port már foglalt a backend miatt. Amikor megkérdezi, hogy futtassa-e a szerverünket a 3001-es porton, válasszuk a "Y" opciót.
   
 
 
