@@ -1,0 +1,101 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "QuizRacer",
+    "dateExported": "2023-05-16T18:44:13.107Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "f94996cf-0162-4f5f-bc84-8bd78e7a3226",
+            "colId": "52f9e6e2-6449-4d6d-a9ad-96a7c4c5c874",
+            "containerId": "",
+            "name": "getAllUser",
+            "url": "http://localhost:3000/users",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-05-03T09:48:53.559Z",
+            "modified": "2023-05-03T09:48:53.559Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "76a41ab9-b940-42ed-b12d-152d6a4dc005",
+            "colId": "52f9e6e2-6449-4d6d-a9ad-96a7c4c5c874",
+            "containerId": "",
+            "name": "findOneUser",
+            "url": "http://localhost:3000/users/9",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-05-03T10:23:59.948Z",
+            "modified": "2023-05-16T15:41:05.519Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "cf506072-fbb9-402f-a1b7-971a9c1f5d66",
+            "colId": "52f9e6e2-6449-4d6d-a9ad-96a7c4c5c874",
+            "containerId": "",
+            "name": "SignUp",
+            "url": "http://localhost:3000/authorization/user",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-05-16T15:15:50.653Z",
+            "modified": "2023-05-16T15:15:50.653Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "firstname",
+                        "value": "valami"
+                    },
+                    {
+                        "name": "lastname",
+                        "value": "valami"
+                    },
+                    {
+                        "name": "emailAddress",
+                        "value": "valamivalami@gmail.com"
+                    },
+                    {
+                        "name": "password",
+                        "value": "valamivalami"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "ccf94c1b-e3d7-400d-a5f0-117c3ced8e6c",
+            "colId": "52f9e6e2-6449-4d6d-a9ad-96a7c4c5c874",
+            "containerId": "",
+            "name": "LogIn",
+            "url": "http://localhost:3000/authorization/loginProfile",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-05-16T16:17:53.355Z",
+            "modified": "2023-05-16T16:17:53.355Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formencoded",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "emailAddress",
+                        "value": "valamivalami@gmail.com"
+                    },
+                    {
+                        "name": "password",
+                        "value": "valamivalami"
+                    }
+                ]
+            },
+            "tests": []
+        }
+    ]
+}
