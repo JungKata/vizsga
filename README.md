@@ -4,7 +4,161 @@
 
 ![image](https://github.com/JungKata/vizsga/assets/97729333/fdfe1caa-4797-4b0d-b9e4-6b216c160c71)
 
-# User
+<h1 align='center'>User</h1>
+Thunder Client Test Rest Api-t használom teszteléshez.
+
+# Sign Up
+![image](https://github.com/JungKata/vizsga/assets/97729333/bfdc2d30-25c9-49fa-878d-3f26c6f9983f)
+
+A regiszrációt egy POST metódusmodosító dekorátorral oldom meg. Ahhoz hogy sikeres legyen a regisztráció minden mezőt ki kell tölteni:
+- firstname (string alapú validálással rendelkezik)
+- lastname (string alapú validálással rendelkezik)
+- emailAddress (email alapú validálással rendelkezik)
+- password (string alapú validálással rendelkezik)
+
+Az eredeti függvény visszatérési értéke, ha minden kötelező mező ki van töltve és a validáció sikeresen megtörtént.
+Ha valamelyik kötelező mező hiányzik vagy már létező értékeket adott meg és a validáció sikertelen volt akkor hibaüzenetet dob.
+
+ ```bash
+ #authorization.controller.ts
+ 
+ if(existingUserFromDatebase){
+    let existingmessage = '';
+        if(existingUserFromDatebase.emailAddress === userData.emailAddress)
+        {
+            existingmessage = 'Ezzel az email címmel már regisztráltak'
+        }
+        if(existingUserFromDatebase.firstname === userData.firstname){
+            existingmessage = 'Ezzel a fistnammel már regisztráltak'
+        }
+        if(existingUserFromDatebase.lastname === userData.lastname){
+            existingmessage = 'Ezzel a lastnammel már regisztráltak'
+        }
+
+        throw new BadRequestException(existingmessage);
+    }
+  ```
+  </br>
+  
+A password titkosítását bcypt-tel  valósítottam meg.
+
+```bash
+ #authorization.controller.ts
+ 
+try {
+        const userId = userData?.id || '';
+        const saveUser = Object.assign(new User(), userData);
+        saveUser.id == userId;
+        const passwordHash = await bcrypt.hash(saveUser.password, 10);
+        saveUser.password = passwordHash;
+        await usersRepository.save(saveUser);
+        console.log(saveUser);
+      } catch (error) {
+        console.error('Error saving user to database:', error.message);
+      }
+```
+
+# AllUser
+Az összes felhasználót GET metódusmodosító dekorátor segítségével hívom meg.
+
+![image](https://github.com/JungKata/vizsga/assets/97729333/121bedd9-3dc1-46c8-845e-f0f22b2acf9d)
+- Function
+ ```bash
+ #signUp.service.ts
+ 
+ async findAll() {
+        return await this.usersRepository.find({
+            select: ["firstname", "lastname", "emailAddress", "password", "id" ],
+           })
+      } 
+```
+# FindOneUser
+Az összes felhasználó közül id alapú kereséssel GET metódusmodosító dekorátorral hajtom végre a keresést
+
+![image](https://github.com/JungKata/vizsga/assets/97729333/2194d772-d0cd-414e-bec5-f149926fe300)
+
+```bash
+#signUp.service.ts
+
+async findOne(id: number): Promise<User[]> {
+        return await this.usersRepository.find({
+            select: ["id","firstname", "lastname", "emailAddress", "password" ],
+            where: [{id}]
+        });
+    }
+```
+
+<h1 align=center>LogIn</h1>
+
+# LogIn
+
+![image](https://github.com/JungKata/vizsga/assets/97729333/03db5a11-84f1-4e93-bdc1-790ac55c42bc)
+
+A bejelentkezéshez is egy POST metódusmodosító dekorátort használtam.  Ahhoz hogy sikeres legyen a bejelentkezls minden mezőt ki kell tölteni:
+- emailAddress
+- password
+
+Az eredeti függvény visszatérési értéke, ha minden kötelező mező ki van töltve és a validáció sikeresen megtörtént.
+Ha valamelyik kötelező mező hiányzik vagy helytelen adatott adott meg és a validáció sikertelen volt akkor hibaüzenetet dob.
+
+```bash
+#authorization.controller.ts
+
+async login(@Body() profileData : profileDto){
+        const usersRepository = this.dataSource.getRepository(User)
+        const user = await usersRepository.findOne({
+            where: {emailAddress : profileData.emailAddress},
+        });
+        if(!user){
+            throw new UnauthorizedException('Hibás email vagy jelszó')
+        }
+        
+        const passMatch = await bcrypt.compare(
+            profileData.password,
+            user.password
+        );
+
+        if(!passMatch){
+            throw new UnauthorizedException('Hibás email vagy jelszó')
+        }
+```
+# Token
+Generálunk egy véletlenszerű token-t a megadott hosszúságban. A generált token hossza alapértelmezetten 16 karakter hosszú.
+A tokeneket gyakran használják a felhasználók azonosítására és hitelesítésére. Amikor egy felhasználó bejelentkezik egy alkalmazásba, egy token generálódik, és az alkalmazás ezt a tokent használja azonosítóként és hitelesítési eszközként a későbbi kérések során. A tokenek lehetővé teszik, hogy a felhasználó bejelentkezve maradjon anélkül, hogy folyamatosan meg kellene adnia a felhasználónevet és jelszót.
+
+- token generálása
+
+```bash
+#authorization.service.ts
+
+async generateUserToken(user: User, tokenLength: number = 32): Promise<Token> {
+      try {
+        var randomToken = randomBytes(tokenLength);
+        var randomTokenString = randomToken.toString('hex');
+        
+        var token = new Token();
+        token.user = user;
+        token.token = randomTokenString;
+        await this.dataSource.getRepository(Token).save(token);
+        
+        return token;
+      } catch (error) {
+        console.error('Error generating token:', error);
+        throw new Error('Failed to generate token');
+      }
+    }
+```
+
+- token törlése
+
+
+```bash
+#authorization.service.ts
+
+async deleteUserToken(token: string){
+        const tokenRepository = this.dataSource.getRepository(Token);
+        await tokenRepository.delete({token});
+```
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
