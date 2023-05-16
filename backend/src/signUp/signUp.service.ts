@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Param } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { User } from "./entity/signUp.entity";
@@ -32,16 +32,9 @@ export class UserService{
         this.usersRepository.save(user)
     }
 
-    async deleteUser(id: number): Promise<void> {
-        try {
-          const user = await this.usersRepository.findOne(id);
-          if (!user) {
-            throw new Error(`User with ID ${id} not found`);
-          }
-          await this.usersRepository.remove(user);
-        } catch (error) {
-          throw new Error(`Could not delete user: ${error.message}`);
-        }
-      }
-      
+
+    async remove(@Param("id") id: number): Promise<User[]> {
+      return await this.service.remove(id);
+    }
+
 }

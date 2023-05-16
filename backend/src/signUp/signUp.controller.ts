@@ -26,7 +26,7 @@ export class UserController{
    //törlés id alapján
    @Delete(':id')
     remove(@Param('id') id: number){
-        return this.service.remove(id);
+        return this.service.remove(+id);
     }
 
     //modósítás id alapján

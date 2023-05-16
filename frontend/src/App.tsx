@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 //import { Navbar } from 'react-bootstrap';
 import LogIn from './components/pages/LogIn';
 import QuizMaker from './components/pages/QuizMaker';
+import QuizRider from './components/pages/QuizRider';
 
 interface State{
   Usertoken: string;
@@ -18,7 +19,7 @@ class App extends React.Component<{}, State> {
       Usertoken: ''
     }
   }
-
+ 
 
   render() {
     const { Usertoken } = this.state;
@@ -28,7 +29,7 @@ class App extends React.Component<{}, State> {
         <div className='row'>
 
           <div className='col-md-3'>
-            <Link to='/quizRider' className='quizrider'>QuizRider</Link>
+            <Link to='/' className='quizrider'>QuizRider</Link>
           </div>
 
           <div className='col-lg-3'>
@@ -46,8 +47,10 @@ class App extends React.Component<{}, State> {
       </div>
 
 
+
       <main>
         <Routes>
+          <Route path='/' element={<QuizRider />}></Route>
           <Route path='/signUp' element={<SignUp alert={{ type: 'success', statusMessage: '' }} />}></Route>
           <Route path='/logIn' element={<LogIn 
           Usertoken={Usertoken}
