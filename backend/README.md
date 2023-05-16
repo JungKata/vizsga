@@ -16,8 +16,8 @@ A regiszrációt egy POST metódusmodosító dekorátorral oldom meg. Ahhoz hogy
 - emailAddress (email alapú validálással rendelkezik)
 - password (string alapú validálással rendelkezik)
 
-Az eredeti függvény visszatérési értéke, ha minden kötelező mező ki van töltve és a validáció sikeresen megtörtént.
-Ha valamelyik kötelező mező hiányzik vagy már létező értékeket adott meg és a validáció sikertelen volt akkor hibaüzenetet dob.
+Az eredeti függvény visszatérési értéke, ha minden (kötelező) mező ki van töltve akkor a validáció sikeresen megtörtént.
+Ha valamelyik kötelező mező hiányzik vagy már használt értékeket adott meg és- vagy a validáció sikertelen volt akkor hibaüzenetet dob.
 
  ```bash
  #authorization.controller.ts
@@ -40,7 +40,7 @@ Ha valamelyik kötelező mező hiányzik vagy már létező értékeket adott me
   ```
   </br>
   
-A password titkosítását bcypt-tel  valósítottam meg.
+A password titkosítását bcrypt-tel  valósítottam meg.
 
 ```bash
  #authorization.controller.ts
