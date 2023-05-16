@@ -123,7 +123,7 @@ async login(@Body() profileData : profileDto){
         }
 ```
 # Token
-Generálunk egy véletlenszerű token-t a megadott hosszúságban. A generált token hossza alapértelmezetten 16 karakter hosszú.
+Generálunk egy véletlenszerű token-t a megadott hosszúságban. A generált token hossza alapértelmezetten karakter hosszú.
 A tokeneket gyakran használják a felhasználók azonosítására és hitelesítésére. Amikor egy felhasználó bejelentkezik egy alkalmazásba, egy token generálódik, és az alkalmazás ezt a tokent használja azonosítóként és hitelesítési eszközként a későbbi kérések során. A tokenek lehetővé teszik, hogy a felhasználó bejelentkezve maradjon anélkül, hogy folyamatosan meg kellene adnia a felhasználónevet és jelszót.
 
 - token generálása
