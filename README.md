@@ -5,7 +5,7 @@
 Üdvözöllek a QuizRacer nevű weboldalon! Ez a platform arra lett tervezve, hogy segítsen szórakoztató és interaktív módon tesztelni a tudásodat különböző témákban. Olvass tovább, és ismerd meg a weboldal nyújtotta lehetőségeket!
 
 # Regisztráció és Belépés:
-- Az első lépés a weboldal használatához az regisztráció vagy a bejelentkezés.
+- Az első lépés a weboldal használatához a regisztráció vagy a bejelentkezés.
 - Ha új felhasználó vagy, egyszerűen töltsd ki a regisztrációs űrlapot, és hozd létre a saját fiókodat.
 - Ha már regisztráltál korábban, csak add meg a felhasználóneved és jelszavad a bejelentkezéshez.
 
@@ -16,9 +16,9 @@
 
 # Quiz:
 - Amikor beléptél a Quiz részbe elkezdődik a játék. 
-- Minden kérdéshez több választási lehetőség tartozik. Válaszd ki a szerinted helyes választ, majd kattints a "Következő" gombra a következő kérdéshez.
+- Minden kérdéshez több választási lehetőség tartozik. Válaszd ki a szerinted helyes megoldást, majd kattints a "Következő" gombra a további kérdéshez.
 - A célod az, hogy minél több kérdésre helyes választ adj, és minél magasabb pontszámot érj el.
-- Ha végeztél a kvízzel kíírja a pontszámokat
+- Ha végeztél a kvízzel kiírja a pontszámokat
 
 
 
