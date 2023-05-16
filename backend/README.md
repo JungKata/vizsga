@@ -160,6 +160,20 @@ async deleteUserToken(token: string){
         await tokenRepository.delete({token});
 ```
 
+<h1 align=center> A weboldal futtatása</h1>
+ 
+# Első lépés -XAMPP
+A weboldalunk futtatásához először el kell indítanunk az XAMPP szoftvert, majd aktiválnunk kell az Apache és MySQL szolgáltatásokat. Ez azért szükséges, mert a weboldal működéséhez egy webszervert és egy adatbázis-szervert is használunk.
+
+# Második lépés - futtatás
+Nyissuk meg a Visual Studio Code programot. Ez után másoljuk be https://github.com/JungKata/vizsga.git linket. Mentsük el a projektet.
+- Backend
+Nyissuk meg a backend mappában lévő fájlokat. Majd a terminálban írjuk be a "npm install" parancsot, hogy telepítsük a szükséges modulokat. Miután ez megtörtént, futtassuk a "npm run start:debug" parancsot a terminálból, hogy elindítsuk a backend szerverünket.
+
+-Frontend
+Nyissuk meg a frontend mappában lévő fájlokat. Majd a terminálban írjuk be a "npm install" parancsot, hogy telepítsük a szükséges modulokat. Miután ez megtörtént, futtassuk a "npm run start" parancsot a terminálból, hogy elindítsuk a frontend szerverünket.
+Fontos, hogy a 3001 porton indítsuk a frontend szerverünket, mivel a 3000 port már foglalt a backend miatt. Amikor megkérdezi, hogy futtassa-e a szerverünket a 3001-es porton, válasszuk a "Y" opciót.
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
