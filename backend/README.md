@@ -2,7 +2,7 @@
 
 # Database schema
 
-![database](https://github.com/JungKata/vizsga/assets/97729333/fdfe1caa-4797-4b0d-b9e4-6b216c160c71)
+![database](https://github.com/JungKata/vizsga/blob/master/images/database.png.PNG)
 
 <h1 align='center'>User</h1>
 Thunder Client Test Rest Api-t használom teszteléshez.
