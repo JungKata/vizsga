@@ -61,7 +61,7 @@ try {
 # AllUser
 Az összes felhasználót GET metódusmodosító dekorátor segítségével hívom meg.
 
-![image](https://github.com/JungKata/vizsga/assets/97729333/121bedd9-3dc1-46c8-845e-f0f22b2acf9d)
+![allUser](https://github.com/JungKata/vizsga/blob/master/images/allUser.PNG)
 - Function
  ```bash
  #signUp.service.ts
