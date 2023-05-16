@@ -8,7 +8,7 @@
 Thunder Client Test Rest Api-t használom teszteléshez.
 
 # Sign Up
-![image](https://github.com/JungKata/vizsga/assets/97729333/bfdc2d30-25c9-49fa-878d-3f26c6f9983f)
+![signUp](https://github.com/JungKata/vizsga/blob/master/images/newUser.PNG)
 
 A regiszrációt egy POST metódusmodosító dekorátorral oldom meg. Ahhoz hogy sikeres legyen a regisztráció minden mezőt ki kell tölteni:
 - firstname (string alapú validálással rendelkezik)
