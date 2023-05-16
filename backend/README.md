@@ -75,7 +75,7 @@ Az összes felhasználót GET metódusmodosító dekorátor segítségével hív
 # FindOneUser
 Az összes felhasználó közül id alapú kereséssel GET metódusmodosító dekorátorral hajtom végre a keresést
 
-![image](https://github.com/JungKata/vizsga/assets/97729333/2194d772-d0cd-414e-bec5-f149926fe300)
+![findOne](https://github.com/JungKata/vizsga/blob/master/images/findOneUser.PNG)
 
 ```bash
 #signUp.service.ts
