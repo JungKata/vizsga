@@ -8,7 +8,7 @@
 Thunder Client Test Rest Api-t használom teszteléshez.
 
 # Sign Up
-![image](https://github.com/JungKata/vizsga/assets/97729333/bfdc2d30-25c9-49fa-878d-3f26c6f9983f)
+![signUp](https://github.com/JungKata/vizsga/blob/master/images/newUser.PNG)
 
 A regiszrációt egy POST metódusmodosító dekorátorral oldom meg. Ahhoz hogy sikeres legyen a regisztráció minden mezőt ki kell tölteni:
 - firstname (string alapú validálással rendelkezik)
@@ -61,7 +61,7 @@ try {
 # AllUser
 Az összes felhasználót GET metódusmodosító dekorátor segítségével hívom meg.
 
-![image](https://github.com/JungKata/vizsga/assets/97729333/121bedd9-3dc1-46c8-845e-f0f22b2acf9d)
+![allUser](https://github.com/JungKata/vizsga/blob/master/images/allUser.PNG)
 - Function
  ```bash
  #signUp.service.ts
@@ -75,7 +75,7 @@ Az összes felhasználót GET metódusmodosító dekorátor segítségével hív
 # FindOneUser
 Az összes felhasználó közül id alapú kereséssel GET metódusmodosító dekorátorral hajtom végre a keresést
 
-![image](https://github.com/JungKata/vizsga/assets/97729333/2194d772-d0cd-414e-bec5-f149926fe300)
+![findOne](https://github.com/JungKata/vizsga/blob/master/images/findOneUser.PNG)
 
 ```bash
 #signUp.service.ts
@@ -92,7 +92,7 @@ async findOne(id: number): Promise<User[]> {
 
 # LogIn
 
-![image](https://github.com/JungKata/vizsga/assets/97729333/03db5a11-84f1-4e93-bdc1-790ac55c42bc)
+![logIn](https://github.com/JungKata/vizsga/blob/master/images/LogIn.PNG)
 
 A bejelentkezéshez is egy POST metódusmodosító dekorátort használtam.  Ahhoz hogy sikeres legyen a bejelentkezls minden mezőt ki kell tölteni:
 - emailAddress
