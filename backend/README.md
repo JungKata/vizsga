@@ -92,7 +92,7 @@ async findOne(id: number): Promise<User[]> {
 
 # LogIn
 
-![image](https://github.com/JungKata/vizsga/assets/97729333/03db5a11-84f1-4e93-bdc1-790ac55c42bc)
+![logIn](https://github.com/JungKata/vizsga/blob/master/images/LogIn.PNG)
 
 A bejelentkezéshez is egy POST metódusmodosító dekorátort használtam.  Ahhoz hogy sikeres legyen a bejelentkezls minden mezőt ki kell tölteni:
 - emailAddress
